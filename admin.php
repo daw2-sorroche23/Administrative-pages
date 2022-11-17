@@ -1,5 +1,5 @@
 <?php
-$db = mysqli_connect('localhost', 'root', 'Pokemon2001!') or 
+$db = mysqli_connect('localhost', 'root', 'root') or 
     die ('Unable to connect. Check your connection parameters.');
 mysqli_select_db($db, 'moviesite') or die(mysqli_error($db));
 ?>
@@ -28,7 +28,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo '<td style="width:75%;">'; 
     echo $row['movie_name'];
     echo '</td><td>';
-    echo ' <a href="movie.php?action=edit&id=' . $row['movie_id'] . '"> [EDIT]</a>'; 
+    echo ' <a href="movie.php?type=movie&action=edit&id=' . $row['movie_id'] . '"> [EDIT]</a>'; 
     echo ' <a href="delete.php?type=movie&id=' . $row['movie_id'] . '"> [DELETE]</a>';
     echo '</td></tr>';
 }
@@ -47,7 +47,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo '<td style="width: 25%;">'; 
     echo $row['people_fullname'];
     echo '</td><td>';
-    echo ' <a href="people.php?action=edit&id=' . $row['people_id'] .
+    echo ' <a href="people.php?type=people&action=edit&id=' . $row['people_id'] .
         '"> [EDIT]</a>'; 
     echo ' <a href="delete.php?type=people&id=' . $row['people_id'] .
         '"> [DELETE]</a>';

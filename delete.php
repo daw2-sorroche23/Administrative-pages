@@ -1,5 +1,5 @@
 <?php
-$db = mysqli_connect('localhost', 'root', 'Pokemon2001!') or 
+$db = mysqli_connect('localhost', 'root', 'root') or 
 die ('Unable to connect. Check your connection parameters.');
 mysqli_select_db($db, 'moviesite') or die(mysqli_error($db));
 
@@ -29,7 +29,7 @@ if (!isset($_GET['do']) || $_GET['do'] != 1) {
         $result = mysqli_query($db, $query) or die(mysqli_error($db));
 ?>
 <p style="text-align: center;">Your person has been deleted.
-<a href="admin.php">Return to Index</a></p>
+<a href="admin.php.php">Return to Index</a></p>
 <?php
         break;
     case 'movie':

@@ -1,5 +1,5 @@
 <?php
-$db = mysqli_connect('localhost', 'root', 'Pokemon2001!') or 
+$db = mysqli_connect('localhost', 'root', 'root') or 
 die ('Unable to connect. Check your connection parameters.');
 mysqli_select_db($db, 'moviesite') or die(mysqli_error($db));
 ?>
@@ -28,8 +28,11 @@ case 'add':
             if($_POST['profesion']=="actor"){
                 $actor=1;
                 $director=0;
-            }else{
-                $actor=0;
+            }if($_POST['profesion']=="director"){
+                $actor=1;
+                $director=0;
+            }if($_POST['profesion']=="dos"){
+                $actor=1;
                 $director=1;
             }
             $query = 'INSERT INTO
@@ -41,7 +44,7 @@ case 'add':
                      '  .$director. ')';
             break;
     }
-break;   
+break; 
 case 'edit':
     switch ($_GET['type']) {
     case 'movie':
@@ -54,13 +57,18 @@ case 'edit':
             WHERE
                 movie_id = ' . $_POST['movie_id'];
         break;
-    }
     case 'people':
         if($_POST['profesion']=="actor"){
             $actor=1;
-            $director=0;
-        }else{
+            $director=0;           
+        }
+        if($_POST['profesion']=="director"){
             $actor=0;
+            $director=1;
+
+        }
+        if($_POST['profesion']=="dos"){
+            $actor=1;
             $director=1;
         }
         $query = 'UPDATE people SET
@@ -70,14 +78,15 @@ case 'edit':
             WHERE
                 people_id = ' . $_POST['people_id'];
         break;
+    }  
 break;
 }
-
 
 if (isset($query)) {
     $result = mysqli_query($db, $query) or die(mysqli_error($db));
 }
 ?>
   <p>Done!</p>
+  <a href="admin.php?">Volver</a>
  </body>
 </html>
